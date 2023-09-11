@@ -1,4 +1,6 @@
 
+import Home from "./pages/Home";
+
 
 import "./App.css";
 // import ChatGPT from "./components/ChatGPT";
@@ -10,7 +12,7 @@ import OurStory from "./pages/OurStory";
 
 
 function App() {
-  // console.log(process);
+
   
   return (
 
