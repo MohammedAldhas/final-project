@@ -1,4 +1,5 @@
-// import React from "react";
+
+
 import "./App.css";
 // import ChatGPT from "./components/ChatGPT";
 import { Routes,Route } from "react-router-dom";
@@ -7,10 +8,12 @@ import ChatGPT from "./components/ChatGPT";
 import OurStory from "./pages/OurStory";
 
 
+
 function App() {
   // console.log(process);
   
   return (
+
     <>
 
 <Routes>
@@ -27,7 +30,9 @@ function App() {
 
       </div> */}
     </>
+
   );
 }
+
 
 export default App;
