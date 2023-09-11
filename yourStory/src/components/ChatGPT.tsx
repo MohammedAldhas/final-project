@@ -238,7 +238,7 @@ const ChatGPT = () => {
                     className=" bg-blue-500 cursor-pointer text-white rounded-full w-2/5"
                     onClick={() => {
                       console.log(el.id);
-                      location.href = `/user/${el.id}`;
+                      location.href = `/${el.id}`;
                     }}
                   >
                     عرض

@@ -17,7 +17,7 @@ function App() {
 
   <Route path="/" element={<OurStory></OurStory>}></Route>
   <Route path="/user" element={<ChatGPT></ChatGPT>}></Route>
-  <Route path="/user/:id" element={<BooksUser></BooksUser>}></Route>
+  <Route path="/:id" element={<BooksUser></BooksUser>}></Route>
 </Routes>
         {/* <ChatGPT /> */}
 
