@@ -1,3 +1,4 @@
+
 import imgN from '../assets/Nav.png';
 import imgF from '../assets/foot.png';
 import imgB from '../assets/book.png';
@@ -36,3 +37,6 @@ export default function Home() {
     </div>
   );
 }
+
+
+
