@@ -31,7 +31,7 @@ export default function BooksUser() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full flex justify-center items-center h-screen bg-[#FED7D8]">
       <div
         className="w-2/4 h-2/4 bg-slate-500 flex justify-center items-center relative"
         onClick={() => {}}
@@ -42,10 +42,11 @@ export default function BooksUser() {
             // console.log(img[i].url);
 
             return (
-              <div className="story text-start flex items-center gap-6 h-full">
-                <div 
-                style={{backgroundImage:`url(${img[i].url})`}}
-                className="border-l h-full w-2/5 flex justify-center items-center bg-cover">
+              <div className="bg-blue-400 story text-start flex items-center gap-6 h-full">
+                <div
+                  style={{ backgroundImage: `url(${img[i].url})` }}
+                  className="border-l h-full w-2/5 flex justify-center items-center bg-cover"
+                >
                   {/* <img className="" src="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE.jpg" alt="" /> */}
                 </div>
                 <p className="w-2/4">{books[i]}</p>

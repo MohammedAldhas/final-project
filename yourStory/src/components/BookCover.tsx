@@ -9,7 +9,7 @@ export default function BookCover(props:Book) {
     <div className=" flex flex-col justify-between">
       <div
 
-        className="bg-white h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
+        className="bg-blue-400 h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
         style={{ backgroundImage: `url(${props.img})` }}
         // onClick={(e) => {
 

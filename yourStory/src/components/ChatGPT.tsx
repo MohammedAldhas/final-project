@@ -3,12 +3,13 @@ import axios from "axios";
 
 import Book from "./Book";
 interface Boks {
+  user: string;
   id: number;
   title: string;
   img: [{ url: string }];
 }
 const ChatGPT = () => {
-  const apiKey = "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";
+  const apiKey = "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";
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [imge, setImg] = useState([
@@ -21,11 +22,16 @@ const ChatGPT = () => {
   const [hiddenClass, sethiddenClass] = useState("hidden");
   const [boks, setboks] = useState<Boks[]>([]);
 
+  const userId = localStorage.getItem("user");
   useEffect(() => {
     axios
       .get("https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks")
       .then((res) => {
-        setboks(res.data);
+        setboks(
+          res.data.filter((el) => {
+            return el.user == userId;
+          })
+        );
       });
   }, []);
 
@@ -67,7 +73,6 @@ const ChatGPT = () => {
               {
                 role: "user",
                 content: ` قصة اطفال عن ${input}`,
-
               },
             ],
           },
@@ -145,11 +150,10 @@ const ChatGPT = () => {
       <div className="flex flex-col justify-center items-center">
         {arr.map((e, i) => {
           if (i == count) {
-            
             return (
               <div
                 key={i}
-                className="shadow rounded bg-slate-50 w-2/4 h-96 flex overflow-hidden p-4 gap-4 justify-center relative"
+                className=" shadow rounded bg-slate-50 w-2/4 h-96 flex overflow-hidden p-4 gap-4 justify-center relative"
               >
                 <Book img={imge[count].url} tex={e}></Book>
                 <button
@@ -200,6 +204,7 @@ const ChatGPT = () => {
                     axios.post(
                       "https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks",
                       {
+                        user: userId,
                         img: book.img,
                         title: input,
                         story: arr,
@@ -221,7 +226,7 @@ const ChatGPT = () => {
               <div key={i} className=" flex flex-col justify-between">
                 <div
                   id={`${el.id}`}
-                  className="bg-white h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
+                  className="bg-blue-400 h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
                   style={{ backgroundImage: `url(${el.img[i].url})` }}
                   // onClick={(e) => {
 
