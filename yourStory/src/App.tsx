@@ -1,17 +1,32 @@
 // import React from "react";
 import "./App.css";
+// import ChatGPT from "./components/ChatGPT";
+import { Routes,Route } from "react-router-dom";
+import BooksUser from "./components/BooksUser";
 import ChatGPT from "./components/ChatGPT";
+import OurStory from "./pages/OurStory";
+
 
 function App() {
+  // console.log(process);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>ChatGPT Integration</h1>
-      </header>
-      <main>
-        <ChatGPT />
-      </main>
-    </div>
+    <>
+
+<Routes>
+
+  <Route path="/" element={<OurStory></OurStory>}></Route>
+  <Route path="/user" element={<ChatGPT></ChatGPT>}></Route>
+  <Route path="/user/:id" element={<BooksUser></BooksUser>}></Route>
+</Routes>
+        {/* <ChatGPT /> */}
+
+{/* <BooksUser></BooksUser> */}
+      {/* <div className="w-full flex justify-center">
+      
+
+      </div> */}
+    </>
   );
 }
 
