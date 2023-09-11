@@ -1,4 +1,6 @@
+
 // import up from '../assets/Group 2.png'
+
 
 // export default function Home() {
 //   return (
