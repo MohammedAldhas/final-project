@@ -35,13 +35,13 @@ function Nav() {
         >
           <a
             className="mb-4 ml-2 mr-5 mt-3  flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
-            href="#"
+            href="/"
           >
             <img className="w-12" src={logo} />
           </a>
         </div>
         <ul
-          className="list-style-none mr-auto flex flex-col  pl-0 lg:flex-row"
+          className="list-style-none mr-auto flex flex-col items-center pl-0 lg:flex-row"
           data-te-navbar-nav-ref
         >
           <li className="mb-4  p-2 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
@@ -54,17 +54,18 @@ function Nav() {
             </a>
           </li>
           <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-            <button
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
+            <a
+            href="/Sign"
+              className="px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
               onClick={() => {}}
             >
               انضم
-            </button>
+            </a>
           </li>
           <li className="mb-4 p-2 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
             <a
               className="text-[#212F54]  transition duration-200 hover:text-[#212F54]  hover:ease-in-out focus:text-[#212F54]  disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-              href="#"
+              href="/LogIn"
               data-te-nav-link-ref
             >
               دخول

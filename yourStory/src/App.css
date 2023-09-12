@@ -1,3 +1,6 @@
 .story{
     direction: rtl;
 }
+*{
+    scroll-behavior: smooth;
+}
