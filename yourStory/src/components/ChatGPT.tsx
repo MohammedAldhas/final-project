@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+import Nav from "./Nav";
+import UserNav from "./UserNav";
 import Book from "./Book";
 interface Boks {
   user: string;
@@ -9,7 +11,12 @@ interface Boks {
   img: [{ url: string }];
 }
 const ChatGPT = () => {
-  const apiKey = "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";
+  const nave = useNavigate();
+  if (!localStorage.getItem("user")) {
+    nave("/");
+    // location.href =
+  }
+  const apiKey = "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";
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [imge, setImg] = useState([
@@ -97,8 +104,10 @@ const ChatGPT = () => {
         .post(
           "https://api.openai.com/v1/images/generations",
           {
-            prompt: `${translate} cartoon`,
-            n: 10,
+            prompt: `${translate} cartoon style`,
+            // n: 10,
+            num_images: 15,
+            model: "text-davinci-002",
           },
           {
             headers: {
@@ -108,6 +117,8 @@ const ChatGPT = () => {
           }
         )
         .then((res) => {
+          console.log(res);
+
           setImg(res.data.data);
         });
     } catch (error) {
@@ -120,8 +131,10 @@ const ChatGPT = () => {
   const arr = response.split("\n\n");
 
   return (
-    <div className="bg-[#F9E9E9] py-5">
-      <div className="flex justify-center items-center gap-3">
+    <div className="bg-[#6772c849] py-5 h-screen flex flex-col justify-center items-center bg-[#DEDBE9]">
+      {localStorage.getItem("user") ? <UserNav></UserNav> : <Nav></Nav>}
+
+      <div className="flex justify-center items-center gap-3 w-full">
         <input
           className="border p-3 text-right rounded-full mb-5 w-3/12 outline-none"
           type="text"
@@ -134,20 +147,22 @@ const ChatGPT = () => {
           onMouseLeave={() => {
             translater();
           }}
+          onClick={() => {
+            console.log(imge);
+          }}
         />
         <button
           className="shadow"
           onClick={() => {
-            setTimeout(() => {
-              imgGPT();
-            }, 2000);
+            imgGPT();
+
             sendToGPT();
           }}
         >
           انشاء
         </button>
       </div>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center w-full ">
         {arr.map((e, i) => {
           if (i == count) {
             return (
@@ -155,7 +170,12 @@ const ChatGPT = () => {
                 key={i}
                 className=" shadow rounded bg-slate-50 w-2/4 h-96 flex overflow-hidden p-4 gap-4 justify-center relative"
               >
-                <Book img={imge[count].url} tex={e}></Book>
+                <Book
+                  img={
+                    imge[count].url
+                  }
+                  tex={e}
+                ></Book>
                 <button
                   className="absolute left-0 bottom-4"
                   onClick={(ev) => {

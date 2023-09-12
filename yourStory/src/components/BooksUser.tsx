@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+// import Nav from "../components/Nav";
+import UserNav from "./UserNav";
+import images from "../assets/book.png";
 
 interface Books {
   story: string;
@@ -31,9 +34,17 @@ export default function BooksUser() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center items-center h-screen bg-[#FED7D8]">
+    <div className="w-full flex justify-center items-center h-screen bg-[#DEDBE9] ">
+      {localStorage.getItem("user") ? (
+        <UserNav></UserNav>
+      ) : (
+        <nav className="flex w-full items-center justify-between  bg-[#744D90] fixed top-0 px-20 max-sm:px-1 py-2 z-30 text-white">
+          <a href="/">الرئيسية</a>
+        </nav>
+      )}
+
       <div
-        className="w-2/4 h-2/4 bg-slate-500 flex justify-center items-center relative"
+        className="w-2/4 h-2/4 bg-slate-800 flex justify-center items-center relative"
         onClick={() => {}}
       >
         {/* <div className="flex gap-1 justify-center items-center"> */}
@@ -42,10 +53,10 @@ export default function BooksUser() {
             // console.log(img[i].url);
 
             return (
-              <div className="bg-blue-400 story text-start flex items-center gap-6 h-full">
+              <div className="bg-slate-100 story text-start flex items-center gap-6 h-full">
                 <div
-                  style={{ backgroundImage: `url(${img[i].url})` }}
-                  className="border-l h-full w-2/5 flex justify-center items-center bg-cover"
+                  style={{ backgroundImage: `url(${img[i].url && images})` }}
+                  className="border-l h-full w-2/5 flex justify-center items-center bg-cover bg-center"
                 >
                   {/* <img className="" src="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE.jpg" alt="" /> */}
                 </div>

@@ -10,6 +10,10 @@ type IuserInfo = {
 };
 
 function SignInPage() {
+  const Nav = useNavigate();
+  if (localStorage.getItem("user")) {
+    Nav("/");
+  }
   const [message, setMessage] = React.useState("");
   const [input, setInput] = React.useState<IuserInfo>({
     Username: "",
@@ -17,9 +21,7 @@ function SignInPage() {
     Password: "",
   });
 
-  const Nav = useNavigate();
-
-  const AddUser = (e) => {
+  const AddUser = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (input.Username == "") {
       const notify = () => toast.warning("ادخل اسم المستخدم");
       notify();

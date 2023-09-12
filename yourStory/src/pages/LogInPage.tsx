@@ -10,6 +10,10 @@ type Iuserlogin = {
 };
 
 export default function LogInPage() {
+  const Nav = useNavigate();
+  if (localStorage.getItem("user")) {
+    Nav("/");
+  }
   const [input, setInput] = React.useState<Iuserlogin>({
     Username: "",
     Password: "",
@@ -27,8 +31,6 @@ export default function LogInPage() {
         console.log(err);
       });
   }, [input]);
-
-  const Nav = useNavigate();
 
   return (
     <div className="min-h-screen py-40 bg-[#D3CEE1]">
