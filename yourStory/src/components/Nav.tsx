@@ -4,9 +4,9 @@ function Nav() {
   const [first, setfirst] = useState("");
 
   return (
-    <nav className="flex w-full items-center justify-end max-md:justify-center bg-[#744D90] fixed top-0 px-20 py-3 z-30">
+    <nav className="flex w-full items-center justify-end max-md:justify-center bg-[#744D90] fixed top-0 px-20 py-3 max-sm:px-1 z-30">
       <ul
-        className="flex  items-center justify-between text-white w-1/5 text-xl font-mono max-md:justify-center max-md:w-3/6"
+        className="flex  items-center justify-between text-white  w-2/6 max-sm:w-full text-xl max-sm:text-sm font-mono max-md:justify-between max-md:w-3/6"
         data-te-navbar-nav-ref
       >
         <li className="" data-te-nav-item-ref>
