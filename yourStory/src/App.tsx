@@ -9,8 +9,6 @@ import LogInPage from "./pages/LogInPage";
 
 
 function App() {
-  console.log(import.meta.env);
-
   return (
     <>
       <Routes>

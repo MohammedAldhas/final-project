@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 // import Nav from "../components/Nav";
 import UserNav from "./UserNav";
 import images from "../assets/book.png";
+import Book from "./Book";
 
 interface Books {
   story: string;
@@ -44,7 +45,7 @@ export default function BooksUser() {
       )}
 
       <div
-        className="w-2/4 h-2/4 flex justify-center items-center relative"
+        className="w-2/3 max-md:w-9/12 max-sm:w-full h-2/4 flex justify-center items-center relative max-sm:p-1"
         onClick={() => {}}
       >
         {/* <div className="flex gap-1 justify-center items-center"> */}
@@ -53,44 +54,47 @@ export default function BooksUser() {
             // console.log(img[i].url);
 
             return (
-              <div className="bg-[#744D90] story text-start flex items-center gap-6 h-full shadow rounded-2xl">
+              <div className="bg-[#744D90] story text-start flex max-sm:w-full items-center gap-6 h-full  w-full shadow rounded-2xl">
                 <div
-                  style={{ backgroundImage: `url(${img[i].url && images})` }}
-                  className="border-l h-full w-2/5 flex justify-center items-center bg-cover bg-center rounded-r-xl"
+                  style={{ backgroundImage: `url(${img[i].url})` }}
+                  className="border-l h-full w-2/4 flex justify-center items-center bg-cover bg-center rounded-r-xl"
+                  onClick={(ev) => {
+                    if (count < countLength && count > 0) {
+                      setCount(count - 1);
+                    } else {
+                      ev.preventDefault();
+                    }
+                  }}
                 >
                   {/* <img className="" src="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE.jpg" alt="" /> */}
                 </div>
-                <p className="w-2/4 text-white">{books[i]}</p>
+                <div
+                  className=" h-full flex justify-center items-center w-2/4"
+                  onClick={(ev) => {
+                    if (count != countLength - 1) {
+                      setCount(count + 1);
+                    } else {
+                      ev.preventDefault();
+                    }
+                  }}
+                >
+                  <p className="px-2 text-white max-sm:text-sm">{books[i]}</p>
+                </div>
+
+                {/* <button className="absolute left-3 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10">
+                  <i className="fa-solid fa-arrow-left text-lg"></i>
+                </button>
+                <button
+                  className="absolute right-80 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10"
+                  
+                >
+                  <i className="fa-solid fa-arrow-right text-lg"></i>
+                </button> */}
               </div>
             );
           }
         })}
         {/* </div> */}
-
-        <button
-          className="absolute left-3 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10"
-          onClick={(ev) => {
-            if (count != countLength - 1) {
-              setCount(count + 1);
-            } else {
-              ev.preventDefault();
-            }
-          }}
-        >
-          <i className="fa-solid fa-arrow-left text-lg"></i>
-        </button>
-        <button
-          className="absolute right-80 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10"
-          onClick={(ev) => {
-            if (count < countLength && count > 0) {
-              setCount(count - 1);
-            } else {
-              ev.preventDefault();
-            }
-          }}
-        >
-          <i className="fa-solid fa-arrow-right text-lg"></i>
-        </button>
       </div>
     </div>
   );
