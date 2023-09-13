@@ -1,6 +1,6 @@
 // import React from 'react'
 interface Books {
-  img: string;
+  img: string |undefined;
   tex: string;
 }
 export default function Book(props: Books) {
