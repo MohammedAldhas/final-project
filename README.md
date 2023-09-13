@@ -10,12 +10,11 @@ What is MyStory?
                                
 Website Developer:
 
-     -Gharam Alhumaydani
-github.com/gharamalhumaydani
-
-
       -Mohammed Aldhas 
 github.com/MohammedAldhas
+
+     -Gharam Alhumaydani
+github.com/gharamalhumaydani
 
                                 
 Figma:
