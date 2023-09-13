@@ -44,7 +44,7 @@ export default function BooksUser() {
       )}
 
       <div
-        className="w-2/4 h-2/4 bg-slate-800 flex justify-center items-center relative"
+        className="w-2/4 h-2/4 flex justify-center items-center relative"
         onClick={() => {}}
       >
         {/* <div className="flex gap-1 justify-center items-center"> */}
@@ -53,14 +53,14 @@ export default function BooksUser() {
             // console.log(img[i].url);
 
             return (
-              <div className="bg-slate-100 story text-start flex items-center gap-6 h-full">
+              <div className="bg-[#744D90] story text-start flex items-center gap-6 h-full shadow rounded-2xl">
                 <div
                   style={{ backgroundImage: `url(${img[i].url && images})` }}
-                  className="border-l h-full w-2/5 flex justify-center items-center bg-cover bg-center"
+                  className="border-l h-full w-2/5 flex justify-center items-center bg-cover bg-center rounded-r-xl"
                 >
                   {/* <img className="" src="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE.jpg" alt="" /> */}
                 </div>
-                <p className="w-2/4">{books[i]}</p>
+                <p className="w-2/4 text-white">{books[i]}</p>
               </div>
             );
           }
@@ -68,7 +68,7 @@ export default function BooksUser() {
         {/* </div> */}
 
         <button
-          className="absolute righ-2/3 translate-x-2/3 bottom-0 bg-slate-400 text-xs rounded-full w-10 h-10"
+          className="absolute left-3 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10"
           onClick={(ev) => {
             if (count != countLength - 1) {
               setCount(count + 1);
@@ -80,7 +80,7 @@ export default function BooksUser() {
           <i className="fa-solid fa-arrow-left text-lg"></i>
         </button>
         <button
-          className="absolute left-2/3 -translate-x-2/3 bottom-0 bg-slate-400 text-xs rounded-full w-10 h-10"
+          className="absolute right-80 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10"
           onClick={(ev) => {
             if (count < countLength && count > 0) {
               setCount(count - 1);

@@ -9,7 +9,7 @@ export default function Book(props: Books) {
       <div className="flex items-center">
         <p className="story text-right">{props.tex}</p>
       </div>
-      <img src={props.img && "https://img.freepik.com/free-photo/fashion-little-boy_71767-95.jpg"} alt="" />
+      <img src={props.img} alt="" />
     </>
   );
 }

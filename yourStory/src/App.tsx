@@ -7,6 +7,10 @@ import SignInPage from "./pages/SignInPage";
 import LogInPage from "./pages/LogInPage";
 
 function App() {
+  // const key = import.meta.env;
+  // import.meta.env.DB_PASSWORD
+  console.log(import.meta.env);
+
   return (
     <>
       <Routes>

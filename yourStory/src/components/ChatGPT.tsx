@@ -16,7 +16,7 @@ const ChatGPT = () => {
     nave("/");
     // location.href =
   }
-  const apiKey = "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";
+  const apiKey = "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";
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [imge, setImg] = useState([
@@ -28,6 +28,7 @@ const ChatGPT = () => {
   const [count, setcount] = useState(0);
   const [hiddenClass, sethiddenClass] = useState("hidden");
   const [boks, setboks] = useState<Boks[]>([]);
+  // const [boks, setboks] = useState<Boks[]>([]);
 
   const userId = localStorage.getItem("user");
   useEffect(() => {
@@ -105,9 +106,9 @@ const ChatGPT = () => {
           "https://api.openai.com/v1/images/generations",
           {
             prompt: `${translate} cartoon style`,
-            // n: 10,
-            num_images: 15,
-            model: "text-davinci-002",
+            n: 10,
+            // num_images: 15,
+            // model: "text-davinci-002",
           },
           {
             headers: {
@@ -131,7 +132,7 @@ const ChatGPT = () => {
   const arr = response.split("\n\n");
 
   return (
-    <div className="bg-[#6772c849] py-5 h-screen flex flex-col justify-center items-center bg-[#DEDBE9]">
+    <div className="bg-[#6772c849] py-20 flex flex-col justify-center items-center bg-[#DEDBE9] ">
       {localStorage.getItem("user") ? <UserNav></UserNav> : <Nav></Nav>}
 
       <div className="flex justify-center items-center gap-3 w-full">
@@ -163,91 +164,95 @@ const ChatGPT = () => {
         </button>
       </div>
       <div className="flex flex-col justify-center items-center w-full ">
-        {arr.map((e, i) => {
-          if (i == count) {
-            return (
-              <div
-                key={i}
-                className=" shadow rounded bg-slate-50 w-2/4 h-96 flex overflow-hidden p-4 gap-4 justify-center relative"
-              >
-                <Book
-                  img={
-                    imge[count].url
-                  }
-                  tex={e}
-                ></Book>
-                <button
-                  className="absolute left-0 bottom-4"
-                  onClick={(ev) => {
-                    if (count < arr.length && count != arr.length - 1) {
-                      setcount(count + 1);
+        {arr.length > 10
+          ? (arr.length = 10)
+          : arr.map((e, i) => {
+              if (i == count) {
+                return (
+                  <div
+                    key={i}
+                    className=" shadow rounded bg-slate-50 w-2/4 h-96 flex overflow-hidden p-4 gap-4 justify-center relative"
+                  >
+                    <Book img={imge[count].url} tex={e}></Book>
+                    <button
+                      className="absolute left-0 bottom-4"
+                      onClick={(ev) => {
+                        if (count < arr.length && count != arr.length - 1) {
+                          setcount(count + 1);
 
-                      console.log(arr.length);
-                      console.log(count);
-                      console.log(imge);
-                      if (count == arr.length - 2) {
-                        sethiddenClass("block");
-                      }
-                    } else {
-                      ev.preventDefault();
-                    }
-                  }}
-                >
-                  التالي
-                </button>
-                <button
-                  className="absolute right-0 bottom-4"
-                  onClick={(ev) => {
-                    if (count < arr.length && count > 0) {
-                      setcount(count - 1);
-                    } else {
-                      console.log(arr);
-                      console.log(imge);
+                          console.log(arr.length);
+                          console.log(count);
+                          console.log(imge);
+                          if (count == arr.length - 2) {
+                            sethiddenClass("block");
+                          }
+                        } else {
+                          ev.preventDefault();
+                        }
+                      }}
+                    >
+                      التالي
+                    </button>
+                    <button
+                      className="absolute right-0 bottom-4"
+                      onClick={(ev) => {
+                        if (count < arr.length && count > 0) {
+                          setcount(count - 1);
+                        } else {
+                          console.log(arr);
+                          console.log(imge);
 
-                      ev.preventDefault();
-                    }
-                  }}
-                >
-                  السابق
-                </button>
+                          ev.preventDefault();
+                        }
+                      }}
+                    >
+                      السابق
+                    </button>
 
-                <button
-                  className={`${hiddenClass}`}
-                  onClick={() => {
-                    const book = {
-                      img: imge,
-                      story: arr,
-                    };
-                    userbooks.push(book);
-                    // console.log(userbooks);
+                    <button
+                      className={`${hiddenClass}`}
+                      onClick={() => {
+                        const book = {
+                          img: imge,
+                          story: arr,
+                        };
+                        userbooks.push(book);
+                        // console.log(userbooks);
 
-                    axios.post(
-                      "https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks",
-                      {
-                        user: userId,
-                        img: book.img,
-                        title: input,
-                        story: arr,
-                      }
-                    );
-                  }}
-                >
-                  send
-                </button>
-              </div>
-            );
-          }
-        })}
+                        axios.post(
+                          "https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks",
+                          {
+                            user: userId,
+                            img: book.img,
+                            title: input,
+                            story: arr,
+                          }
+                        );
+                      }}
+                    >
+                      send
+                    </button>
+                  </div>
+                );
+              }
+            })}
       </div>
-      <div className="flex justify-center items-center">
-        <div className="grid grid-cols-4 gap-4 mt-6 w-2/4">
+      <div className="flex justify-center items-center w-full">
+        <div className="grid grid-cols-4 gap-4 mt-6 w-full p-5">
           {boks.map((el, i) => {
             return (
-              <div key={i} className=" flex flex-col justify-between">
+              <div key={i} className=" flex flex-col justify-between relative " >
+                <div className={`del w-full h-[90%] absolute  z-20 }`} >
+                  <a href="#">X</a>
+                </div>
                 <div
                   id={`${el.id}`}
                   className="bg-blue-400 h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
                   style={{ backgroundImage: `url(${el.img[i].url})` }}
+                  onClick={()=>{
+                    console.log(el.id);
+                    
+                  }}
                   // onClick={(e) => {
 
                   // }}
