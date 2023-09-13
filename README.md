@@ -2,10 +2,11 @@ MyStory
 
 What is MyStory?
 
-        The interactive website developed for children aims to enhance their imagination and
-        foster their creativity through the use of smart technology. On this website, 
-        children can input their own characters and the settings they want to include in their stories.
-        Using artificial intelligence, the website can generate custom-designed images based on the information provided by the children.
+          The interactive website developed for children aims to enhance their imagination and
+          foster their creativity through the use of smart technology. On this website, 
+          children can input their own characters and the settings they want to include in their stories.
+          Using artificial intelligence, 
+	      the website can generate custom-designed images based on the information provided by the children.
 
                                
 Website Developer:
