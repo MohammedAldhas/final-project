@@ -13,11 +13,8 @@ export default function Home() {
 
       <div className="h-screen relative">
         <div className="bg-gradient-to-l from-[#8451a8]  to-[#DED9FD] opacity-50 w-full h-full absolute"></div>
-        <h1 className="w-2/4 absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-2xl text-white">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, vero
-          excepturi aperiam expedita sequi inventore suscipit nihil asperiores
-          accusantium dolore aspernatur aliquid id nesciunt veritatis at culpa
-          et nobis voluptas.
+        <h1 className="w-2/6 absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-3xl text-center text-white leading-relaxed">
+          دع طفلك يبحر بخياله وسنساعدة بإنشاء قصة شيقة بمساعدة الذكاء الصناعي
         </h1>
         <img className="w-full h-full" src={landing} alt="" />
       </div>

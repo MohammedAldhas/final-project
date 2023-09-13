@@ -43,13 +43,13 @@ export default function OurStory() {
       </div>
 
       <div
-        className="grid grid-cols-3 w-full justify-between items-center mt-10
-       gap-y-14 py-7  rounded-3xl bg-[#ffffff33] my-5 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 max-sm:w-full"
+        className="grid grid-cols-4  w-full justify-between items-center mt-10 p-5
+       gap-14 py-7  rounded-3xl bg-[#ffffff33] my-5 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 max-sm:w-full"
       >
         {filteredBooks.map((el) => {
           return (
             <div
-              className="flex justify-center items-center"
+              className="flex justify-center items-center w-full "
               onClick={() => {
                 console.log(el.id);
                 location.href = `/${el.id}`;

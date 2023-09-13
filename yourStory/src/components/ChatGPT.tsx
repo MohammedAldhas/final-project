@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import UserNav from "./UserNav";
 import Book from "./Book";
+import BookCover from "./BookCover";
 interface Boks {
   user: string;
   id: number;
@@ -16,7 +17,7 @@ const ChatGPT = () => {
     nave("/");
     // location.href =
   }
-  const apiKey = "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";
+  const apiKey = "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";
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [imge, setImg] = useState([
@@ -41,7 +42,7 @@ const ChatGPT = () => {
           })
         );
       });
-  }, []);
+  }, [response]);
 
   const translater = async () => {
     try {
@@ -132,12 +133,12 @@ const ChatGPT = () => {
   const arr = response.split("\n\n");
 
   return (
-    <div className="bg-[#6772c849] py-20 flex flex-col justify-center items-center bg-[#DEDBE9] ">
+    <div className="bg-[#6772c849]  flex flex-col justify-center items-center  w-full bg-[#DEDBE9] py-32">
       {localStorage.getItem("user") ? <UserNav></UserNav> : <Nav></Nav>}
 
-      <div className="flex justify-center items-center gap-3 w-full">
+      <div className="flex justify-center items-center gap-1 w-full ">
         <input
-          className="border p-3 text-right rounded-full mb-5 w-3/12 outline-none"
+          className="border p-3 text-right rounded-full w-2/6 max-sm:w-2/3 outline-none"
           type="text"
           id="input"
           placeholder="اكتب قصتك"
@@ -153,7 +154,7 @@ const ChatGPT = () => {
           }}
         />
         <button
-          className="shadow"
+          className="shadow w-14 text-white text-xs py-1 rounded-full bg-[#744D90] "
           onClick={() => {
             imgGPT();
 
@@ -163,54 +164,53 @@ const ChatGPT = () => {
           انشاء
         </button>
       </div>
-      <div className="flex flex-col justify-center items-center w-full ">
+      <div className="flex flex-col justify-center items-center w-2/3 max-md:w-3/4 max-sm:w-5/6 h-[350px]  mt-5">
         {arr.length > 10
           ? (arr.length = 10)
           : arr.map((e, i) => {
               if (i == count) {
+
+                
                 return (
+                  //
+
                   <div
                     key={i}
-                    className=" shadow rounded bg-slate-50 w-2/4 h-96 flex overflow-hidden p-4 gap-4 justify-center relative"
+                    className=" bg-[#744d9088] story text-start flex  w-full  items-center gap-6 h-full shadow rounded-2xl relative"
                   >
-                    <Book img={imge[count].url} tex={e}></Book>
-                    <button
-                      className="absolute left-0 bottom-4"
+                    <div
+                      style={{ backgroundImage: `url(${imge[count].url})` }}
+                      className="border-l h-full w-2/4 flex justify-center items-center bg-cover bg-center rounded-r-xl"
+                      onClick={(ev) => {
+                        if (count < arr.length && count > 0) {
+                          setcount(count - 1);
+                        } else {
+                          ev.preventDefault();
+                        }
+                      }}
+                    ></div>
+                    {/* <img src={imge[count].url} alt="" /> */}
+                    <div
+                      className=" h-full flex justify-center items-center w-2/4"
                       onClick={(ev) => {
                         if (count < arr.length && count != arr.length - 1) {
                           setcount(count + 1);
-
-                          console.log(arr.length);
-                          console.log(count);
-                          console.log(imge);
                           if (count == arr.length - 2) {
                             sethiddenClass("block");
                           }
                         } else {
                           ev.preventDefault();
+                          
                         }
                       }}
                     >
-                      التالي
-                    </button>
-                    <button
-                      className="absolute right-0 bottom-4"
-                      onClick={(ev) => {
-                        if (count < arr.length && count > 0) {
-                          setcount(count - 1);
-                        } else {
-                          console.log(arr);
-                          console.log(imge);
-
-                          ev.preventDefault();
-                        }
-                      }}
-                    >
-                      السابق
-                    </button>
+                      <p className="px-2 text-white max-sm:text-sm">
+                        {e}
+                      </p>
+                    </div>
 
                     <button
-                      className={`${hiddenClass}`}
+                      className={`${hiddenClass} absolute bottom-2 left-3`}
                       onClick={() => {
                         const book = {
                           img: imge,
@@ -238,52 +238,33 @@ const ChatGPT = () => {
             })}
       </div>
       <div className="flex justify-center items-center w-full">
-        <div className="grid grid-cols-4 gap-4 mt-6 w-full p-5">
+        <div
+          className="grid grid-cols-3  w-2/3 justify-between items-center mt-10 p-5
+       gap-14 py-7  rounded-3xl bg-[#ffffff33] my-5  max-md:grid-cols-2 max-sm:grid-cols-1 "
+        >
           {boks.map((el, i) => {
             return (
-              <div key={i} className=" flex flex-col justify-between relative " >
-                <div className={`del w-full h-[90%] absolute  z-20 }`} >
-                  <a href="#">X</a>
-                </div>
-                <div
-                  id={`${el.id}`}
-                  className="bg-blue-400 h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
-                  style={{ backgroundImage: `url(${el.img[i].url})` }}
-                  onClick={()=>{
-                    console.log(el.id);
-                    
-                  }}
-                  // onClick={(e) => {
-
-                  // }}
-                >
-                  {/* <img className="w-3/6" src={el.img[i].url} alt="خطا" /> */}
-                  <h2 className="bg-slate-50 w-full p-2 rounded-3xl text-center text-sm">
-                    {el.title}
-                  </h2>
-                </div>
-                <div className="flex gap-1 justify-center text-center ">
-                  <div
-                    id={`${el.id}`}
-                    className=" bg-blue-500 cursor-pointer text-white rounded-full w-2/5"
-                    onClick={() => {
-                      console.log(el.id);
-                      location.href = `/${el.id}`;
-                    }}
-                  >
-                    عرض
-                  </div>
-                  <div
-                    id={`${el.id}`}
-                    className=" bg-red-600 text-white rounded-full w-2/5"
+              <div key={i} className=" flex flex-col justify-between relative">
+                <div className={`del w-full h-[90%] absolute  z-20 }`}>
+                  <button
+                    className="bg-red-700 text-white rounded-full h-8 w-8 flex justify-center items-center absolute right-0"
                     onClick={() => {
                       axios.delete(
                         `https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks/${el.id}`
                       );
                     }}
                   >
-                    حذف
-                  </div>
+                    X
+                  </button>
+                </div>
+                <div
+                  className=""
+                  onClick={() => {
+                    console.log(el.id);
+                    location.href = `/${el.id}`;
+                  }}
+                >
+                  <BookCover img={el.img[i].url} title={el.title}></BookCover>
                 </div>
               </div>
             );
