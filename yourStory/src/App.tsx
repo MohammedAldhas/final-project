@@ -1,25 +1,26 @@
 
-// import {Routes,Route} from "react-router-dom"
-// import Nav from "./components/Nav";
-// import LogInPage from "./pages/LogInPage";
-// import SignInPage from "./pages/SignInPage";
-// import Footer from "./components/Footer";
-// import ChatGPT from "./components/ChatGPT";
-
-
+import Home from "./pages/Home";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import BooksUser from "./components/BooksUser";
+import ChatGPT from "./components/ChatGPT";
+import SignInPage from "./pages/SignInPage";
+import LogInPage from "./pages/LogInPage";
 
 
 function App() {
   return (
-    <div>
-     {/* <SignInPage/>
-     <LogInPage/> */}
-   
-   
-  
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/user" element={<ChatGPT></ChatGPT>}></Route>
+        <Route path="/:id" element={<BooksUser></BooksUser>}></Route>
+        <Route path="/Sign" element={<SignInPage></SignInPage>}></Route>
+        <Route path="/LogIn" element={<LogInPage></LogInPage>}></Route>
+      </Routes>
+    </>
+
   );
 }
-
 
 export default App;
