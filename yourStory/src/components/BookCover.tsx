@@ -1,25 +1,24 @@
-
-
-interface Book{
-    img:string,
-    title:string
+interface Book {
+  img: string;
+  title: string;
 }
-export default function BookCover(props:Book) {
+export default function BookCover(props: Book) {
   return (
-    <div className=" flex flex-col justify-between">
-      <div
+    // <div className=" flex flex-col justify-between">
+    <div
+      className="bg-[#744D90] h-80 w-[20rem] flex flex-col justify-between items-center gap-3  shadow bg-cover bg-center hover:scale-105 "
+      // style={{ backgroundImage: `url(${props.img})` }}
+      // onClick={(e) => {
 
-        className="bg-white h-56 flex justify-center items-end gap-2 rounded-3xl shadow bg-cover bg-center hover:scale-105"
-        style={{ backgroundImage: `url(${props.img})` }}
-        // onClick={(e) => {
-
-        // }}
-      >
-        {/* <img className="w-3/6" src={el.img[i].url} alt="خطا" /> */}
-        <h2 className="bg-slate-50 w-full p-2 rounded-3xl text-center text-sm">
-          {props.title}
-        </h2>
+      // }}
+    >
+      <div className="bg-white w-full  h-56 flex justify-center items-center ">
+        <img className=" w-full h-full" src={props.img} alt="err" />
+      </div>
+      <div className="w-full  text-sm text-right text-white h-1/4 flex justify-center items-center">
+        <h2 className="px-3">{props.title}</h2>
       </div>
     </div>
+    // </div>
   );
 }

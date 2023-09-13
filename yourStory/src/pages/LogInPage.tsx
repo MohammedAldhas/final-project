@@ -1,45 +1,39 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios'
-
-
-
-type Iuserlogin={
-  
-  Username:string,
-  Password:string,
-}
-
+type Iuserlogin = {
+  Username: string;
+  Password: string;
+};
 
 export default function LogInPage() {
+  const Nav = useNavigate();
+  if (localStorage.getItem("user")) {
+    Nav("/");
+  }
+  const [input, setInput] = React.useState<Iuserlogin>({
+    Username: "",
+    Password: "",
+  });
 
-  const [input,setInput] =React.useState<Iuserlogin>({
-    Username:"",
-    Password:"",
+  const [inputuse, setInputuser] = React.useState<Iuserlogin[]>([]);
 
-  })
-   
-  const [inputuse,setInputuser] = React.useState<Iuserlogin[]>([])
-
-  
- React.useEffect(() => {
-  axios.get("https://64ecabe1f9b2b70f2bfac3e1.mockapi.io/login")
-  .then((res)=>{
-    setInputuser(res.data)
-  }).catch((err)=>{
-    console.log(err);
-    
-  })
-
- },[input]);
-
- const Nav = useNavigate();
- 
+  React.useEffect(() => {
+    axios
+      .get("https://64ecabe1f9b2b70f2bfac3e1.mockapi.io/login")
+      .then((res) => {
+        setInputuser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [input]);
 
   return (
+
 
     <div className="min-h-screen py-40 bg-[#D3CEE1]" >
     <div className="container mx-auto ">
@@ -55,42 +49,54 @@ export default function LogInPage() {
                  </div>
                  <div className="mt-5">
                      <input  className="border-2 rounded-md bg-[#DED8FE]  py-1 px-2 w-full text-right" type='password' value={input.Password} placeholder='كلمة المرور'onChange={(e)=>{setInput({...input,Password:e.target.value})}}/>
-                 </div>
-                 
-                 <div className="mt-5">
-                   <button className="w-full bg-[#FFFFFF] rounded-full py-3 text-center text-2xl text-[#744D90]"onClick={()=>{
-                     inputuse.map((user) => {
-                     
-                      if (input.Username === user.Username && input.Password === user.Password) {
-                        
-                        Nav('/UserPage');
+                </div>
+               <div className="mt-5">
+                <button
+                  className="w-full bg-[#69C0DC] rounded-full py-3 text-center text-white"
+                  onClick={(e) => {
+                    inputuse.map((user) => {
+                      if (
+                        input.Username === user.Username &&
+                        input.Password === user.Password
+                      ) {
+                        Nav("/");
+                        localStorage.setItem("user", user.id);
+                        localStorage.setItem("Username", user.Username);
+
                       } else {
-                        
-                        toast.error('فشل تسجيل الدخول. يرجى التحقق من بيانات .');
+                        toast.error(
+                          "فشل تسجيل الدخول. يرجى التحقق من بيانات ."
+                        );
+                        e.preventDefault();
                       }
 
-                     })
-                   }}>تسجيل دخول</button>
-                   <ToastContainer 
-                   position = {"top-center"}
-                   autoClose = {false} 
-                   closeOnClick= {true}
-                   pauseOnHover = {false}
-                   pauseOnFocusLoss = {false}
-                   draggable = {false}
-                    />
-                </div>
-                <p className='pt-10 text-center text-[#FDB7B7] text-xl' >ليس لديك حساب؟ <a className="font-semibold text-base text-white  hover:underline"href="/">سجل الأن</a></p>
-                
-              </form>
+                    });
+                  }}
+                >
+                  تسجيل دخول
+                </button>
+                <ToastContainer
+                  position={"top-center"}
+                  autoClose={false}
+                  closeOnClick={true}
+                  pauseOnHover={false}
+                  pauseOnFocusLoss={false}
+                  draggable={false}
+                />
               </div>
-
+              <p className="pt-10 text-center text-[#FED7D8] text-xl">
+                ليس لديك حساب؟{" "}
+                <a
+                  className="font-semibold text-base text-[#212F54]  hover:underline"
+                  href="/Sign"
+                >
+                  سجل الأن
+                </a>
+              </p>
+            </form>
+          </div>
         </div>
-
-    
+      </div>
     </div>
-   </div>
-  </div>
-
-  )
+  );
 }

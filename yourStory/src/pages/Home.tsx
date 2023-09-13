@@ -1,42 +1,31 @@
-
-import imgN from '../assets/Nav.png';
-import imgF from '../assets/foot.png';
-import imgB from '../assets/book.png';
-import Nav from '../components/Nav';
-
+import landing from "../assets/reading-cover-1250x834.jpeg";
+import Nav from "../components/Nav";
+import OurStory from "./OurStory";
+import Footer from "../components/Footer";
+import UserNav from "../components/UserNav";
 export default function Home() {
+
+
+  
   return (
-    <div className="min-h-[200vh] relative bg-[#F9E9E9]">
-      <div className="fixed w-full  top-0  z-20 ">
-        <Nav />
+    <div className="bg-[#DEDBE9]  relative">
+      {localStorage.getItem("user") ? <UserNav></UserNav> : <Nav></Nav>}
+
+      <div className="h-screen relative">
+        <div className="bg-gradient-to-l from-[#8451a8]  to-[#DED9FD] opacity-50 w-full h-full absolute"></div>
+        <h1 className="w-2/4 absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-2xl text-white">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, vero
+          excepturi aperiam expedita sequi inventore suscipit nihil asperiores
+          accusantium dolore aspernatur aliquid id nesciunt veritatis at culpa
+          et nobis voluptas.
+        </h1>
+        <img className="w-full h-full" src={landing} alt="" />
+      </div>
+      <div className="py-20 px-20 " id="ourStory">
+        <OurStory></OurStory>
       </div>
 
-      {/* Image at the top */}
-      <img
-        src={imgN}
-        alt="Image at the top"
-        className="absolute top-0 z-10 w-full h-auto bg-cover bg-no-repeat bg-fixed "
-      />
-
-      {/* Container for the two images */}
-      <div className="absolute inset-x-0 bottom-0 h-auto">
-        {/* Image on the left */}
-        <img
-          src={imgB}
-          alt="Image on the left"
-          className="fixed -left-5 bottom-0  transform  w-50 bg-cover bg-no-repeat bg-fixed"
-        />
-
-        {/* Image at the bottom */}
-        <img
-          src={imgF}
-          alt="Image at the bottom"
-          className="w-full bg-cover bg-no-repeat bg-fixed"
-        />
-      </div>
+      <Footer></Footer>
     </div>
   );
 }
-
-
-
