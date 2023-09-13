@@ -1,3 +1,4 @@
+
 import Home from "./pages/Home";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
@@ -6,11 +7,8 @@ import ChatGPT from "./components/ChatGPT";
 import SignInPage from "./pages/SignInPage";
 import LogInPage from "./pages/LogInPage";
 
-function App() {
-  // const key = import.meta.env;
-  // import.meta.env.DB_PASSWORD
-  // console.log(import.meta.env);
 
+function App() {
   return (
     <>
       <Routes>
@@ -21,6 +19,7 @@ function App() {
         <Route path="/LogIn" element={<LogInPage></LogInPage>}></Route>
       </Routes>
     </>
+
   );
 }
 
