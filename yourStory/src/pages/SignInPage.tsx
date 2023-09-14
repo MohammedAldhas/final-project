@@ -107,7 +107,7 @@ function SignInPage() {
                      draggable = {false}
                       />
                   </div>
-                  <p className='pt-10 text-center text-[#FDB7B7]  text-xl' >لديك حساب؟ <a className="font-semibold text-base text-white  hover:underline"href="/LogInPage"> تسجيل دخول</a></p>
+                  <p className='pt-10 text-center text-[#FDB7B7]  text-xl' >لديك حساب؟ <a className="font-semibold text-base text-white  hover:underline"href="/LogIn"> تسجيل دخول</a></p>
                   
                 </form>
           </div>
