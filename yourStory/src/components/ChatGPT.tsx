@@ -17,7 +17,7 @@ const ChatGPT = () => {
     nave("/");
     // location.href =
   }
-  const apiKey = "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";
+  const apiKey = "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";
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [imge, setImg] = useState([
@@ -165,72 +165,77 @@ const ChatGPT = () => {
         </button>
       </div>
       <div className="flex flex-col justify-center items-center w-2/3 max-md:w-3/4 max-sm:w-5/6 h-[350px]  mt-5">
-        {arr.length > 10
-          ? (arr.length = 10)
-          : arr.map((e, i) => {
-              if (i == count) {
-                return (
-                  //
+        {arr.map((e, i) => {
+          if (i == count) {
+            if (arr.length > 10) {
+              arr.length = 10;
+            }
+            return (
+              //
 
-                  <div
-                    key={i}
-                    className=" bg-[#744d9088] story text-start flex  w-full  items-center gap-6 h-full shadow rounded-2xl relative"
-                  >
-                    <div
-                      style={{ backgroundImage: `url(${imge[count].url})` }}
-                      className="border-l h-full w-2/4 flex justify-center items-center bg-cover bg-center rounded-r-xl"
-                      onClick={(ev) => {
-                        if (count < arr.length && count > 0) {
-                          setcount(count - 1);
-                        } else {
-                          ev.preventDefault();
-                        }
-                      }}
-                    ></div>
-                    {/* <img src={imge[count].url} alt="" /> */}
-                    <div
-                      className=" h-full flex justify-center items-center w-2/4"
-                      onClick={(ev) => {
-                        if (count < arr.length && count != arr.length - 1) {
-                          setcount(count + 1);
-                          if (count == arr.length - 2) {
-                            sethiddenClass("block");
-                          }
-                        } else {
-                          ev.preventDefault();
-                        }
-                      }}
-                    >
-                      <p className="px-2 text-white max-sm:text-sm">{e}</p>
-                    </div>
+              <div
+                key={i}
+                className=" bg-[#744d9088] story text-start flex  w-full  items-center gap-6 h-full shadow rounded-2xl relative"
+              >
+                <div
+                  style={{ backgroundImage: `url(${imge[count].url})` }}
+                  className="border-l h-full w-2/4 flex justify-center items-center bg-cover bg-center rounded-r-xl"
+                  onClick={(ev) => {
+                    if (count < arr.length && count > 0) {
+                      setcount(count - 1);
+                    } else {
+                      ev.preventDefault();
+                    }
+                  }}
+                >
+                  {/* <p className="px-2 text-white max-sm:text-sm">{e}</p> */}
+                </div>
+                {/* <img src={imge[count].url} alt="" /> */}
+                <div
+                  className=" h-full flex justify-center items-center w-2/4"
+                  onClick={(ev) => {
+                    if (count < arr.length && count != arr.length - 1) {
+                      setcount(count + 1);
+                      console.log(arr,length);
+                      
+                      if (count == arr.length - 2) {
+                        sethiddenClass("block");
+                      }
+                    } else {
+                      ev.preventDefault();
+                    }
+                  }}
+                >
+                  <p className="px-2 text-white max-sm:text-sm">{e}</p>
+                </div>
 
-                    <button
-                      className={`${hiddenClass} absolute bottom-2 left-3`}
-                      onClick={() => {
-                        const book = {
-                          img: imge,
-                          story: arr,
-                        };
-                        userbooks.push(book);
-                        // console.log(userbooks);
+                <button
+                  className={`${hiddenClass} absolute bottom-2 left-3`}
+                  onClick={() => {
+                    const book = {
+                      img: imge,
+                      story: arr,
+                    };
+                    userbooks.push(book);
+                    // console.log(userbooks);
 
-                        axios.post(
-                          "https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks",
-                          {
-                            user: userId,
-                            img: book.img,
-                            title: input,
-                            story: arr,
-                          }
-                        );
-                      }}
-                    >
-                      send
-                    </button>
-                  </div>
-                );
-              }
-            })}
+                    axios.post(
+                      "https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks",
+                      {
+                        user: userId,
+                        img: book.img,
+                        title: input,
+                        story: arr,
+                      }
+                    );
+                  }}
+                >
+                  send
+                </button>
+              </div>
+            );
+          }
+        })}
       </div>
       <div className="flex justify-center items-center w-full">
         <div
