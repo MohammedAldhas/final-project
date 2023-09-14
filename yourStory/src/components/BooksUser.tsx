@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import Nav from "../components/Nav";
 import UserNav from "./UserNav";
-import images from "../assets/book.png";
-import Book from "./Book";
 
 interface Books {
   story: string;
@@ -78,7 +76,7 @@ export default function BooksUser() {
                     }
                   }}
                 >
-                  <p className="px-2 text-white max-sm:text-sm">{books[i]}</p>
+                  <p className="px-2 text-white max-sm:text-sm">{el}</p>
                 </div>
 
                 {/* <button className="absolute left-3 bottom-3 bg-slate-400 text-xs rounded-full w-10 h-10">
