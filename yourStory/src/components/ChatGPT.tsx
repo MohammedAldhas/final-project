@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import UserNav from "./UserNav";
-import Book from "./Book";
+// import Book from "./Book";
 import BookCover from "./BookCover";
 interface Boks {
   user: string;
@@ -17,7 +17,7 @@ const ChatGPT = () => {
     nave("/");
     // location.href =
   }
-  const apiKey = "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";
+  const apiKey = "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";
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [imge, setImg] = useState([
@@ -37,7 +37,7 @@ const ChatGPT = () => {
       .get("https://64ec5fbaf9b2b70f2bfa2f93.mockapi.io/userBooks")
       .then((res) => {
         setboks(
-          res.data.filter((el) => {
+          res.data.filter((el: { user: string | null }) => {
             return el.user == userId;
           })
         );
@@ -169,8 +169,6 @@ const ChatGPT = () => {
           ? (arr.length = 10)
           : arr.map((e, i) => {
               if (i == count) {
-
-                
                 return (
                   //
 
@@ -200,13 +198,10 @@ const ChatGPT = () => {
                           }
                         } else {
                           ev.preventDefault();
-                          
                         }
                       }}
                     >
-                      <p className="px-2 text-white max-sm:text-sm">
-                        {e}
-                      </p>
+                      <p className="px-2 text-white max-sm:text-sm">{e}</p>
                     </div>
 
                     <button
